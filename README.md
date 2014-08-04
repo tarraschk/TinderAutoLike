@@ -1,5 +1,4 @@
-TinderRuby AutoLiker v1.0
-=========================
+# TinderRuby AutoLiker v1.0
 
 Tinder Auto Like with Ruby - Applying A/B testing on human relationships.
 
@@ -11,10 +10,16 @@ Licensed under the MIT license.
 This script has been made to do a little social experiment, trying to apply A/B testing to Tinder.
 Please do not abuse this script. Try to meet girls in real life and preserve the dignity of human relationships.
 
-How to use it
-=============
+# Requirements
+A working Tinder account, connected to your Facebook account.
+Ruby >= 1.9.2
 
-1) Edit the file and insert your Facebook login/password at lines 22 & 23.
+
+# Usage
+
+## How to use the script
+
+1) Edit the file and insert your Facebook login/password at lines 22 & 23:
 
     myLogin = 'YOUR_FACEBOOK_EMAIL_ADDRESS'
     myPassword = 'YOUR_FACEBOOK_PASSWORD'
@@ -30,3 +35,15 @@ Please wait while the script connects you to Facebook, fetches your token & id, 
 Users liked will be put in the file "targets.txt".
 
 3) Enjoy! Do some A/B testing to optimize your profile or study human relationships :).
+
+## A/B Testing with TinderAutoLike
+
+1) Create a profile and set up your account with a typical picture following one of those categories: adventure/selfie/group/fun.
+
+2) Set up your description according to your picture.
+
+3) Launch the script and wait for a week.
+
+4) Count the number of matches you got and divide by the number of likes (see targets.txt) to get your ratio.
+
+5) Delete your Tinder profile, create a new one and iterate.
