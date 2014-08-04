@@ -8,7 +8,7 @@ http://www.argaus.fr
 Licensed under the MIT license.
 
 This script has been made to do a little social experiment, trying to apply A/B testing to Tinder.
-Please do not abuse this script. Try to meet girls in real life and preserve the dignity of human relationships.
+Please do not abuse the Tinder community with this script. Try to meet girls in real life and preserve the dignity of human relationships.
 
 # Requirements
 A working Tinder account, connected to your Facebook account.
@@ -47,3 +47,7 @@ Users liked will be put in the file "targets.txt".
 4) Count the number of matches you got and divide by the number of likes (see targets.txt) to get your ratio.
 
 5) Delete your Tinder profile, create a new one and iterate.
+
+# Results
+
+Feel free to share your results with this repo!
