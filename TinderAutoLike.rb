@@ -19,8 +19,8 @@ puts "\
 # -------------
 # Please insert your Facebook credentials below. They won't be sent to anybody except Facebook servers.
 # We use them to connect you and to fetch your Facebook Tinder token & id, in order to authenticate with the Tinder server.
-myLogin = ''
-myPassword = ''
+myLogin = 'YOUR_FACEBOOK_EMAIL_ADDRESS'
+myPassword = 'YOUR_FACEBOOK_PASSWORD'
 
 # ------------
 # DEPENDENCIES
