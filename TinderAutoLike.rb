@@ -1,6 +1,6 @@
 puts "\
 ┌────────────────────────────────────────────────────────────────────┐
-│ Tinder Ruby AutoLiker v1.0                                         │
+│ Tinder Ruby AutoLiker v1.0.1                                       │
 ├────────────────────────────────────────────────────────────────────┤
 │ Copyright © 2014 Maxime Alay-Eddine @tarraschk                     │
 │ Copyright © 2014 ARGAUS SAS Cybersecurity (http://www.argaus.fr)   │
@@ -81,6 +81,9 @@ conn = Faraday.new(:url => 'https://api.gotinder.com') do |faraday|
   faraday.response  :logger                  # log requests to STDOUT
   faraday.adapter Faraday.default_adapter  # make requests with Net::HTTP
 end
+# Tinder blocked the Faraday User-Agent.
+# We now must provide the same User-Agent as the iPhone
+conn.headers['User-Agent'] = "Tinder/4.0.4 (iPhone; iOS 7.1.1; Scale/2.00)"
 puts 'Fetching your Tinder token...'
 # Authentication, the point is to get your Tinder token
 rsp = conn.post '/auth', {:facebook_token => fb_token, :facebook_id => fb_id}
