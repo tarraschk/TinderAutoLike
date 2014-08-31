@@ -1,4 +1,4 @@
-# TinderRuby AutoLiker v1.0
+# TinderRuby AutoLiker v1.0.1
 
 Tinder Auto Like with Ruby - Applying A/B testing on human relationships.
 
@@ -50,4 +50,18 @@ Users liked will be put in the file "targets.txt".
 
 # Results
 
-Feel free to share your results with this repo!
+Feel free to share your results with this repo.
+
+Below are what we learnt so far with A/B testing.
+
+##Your pictures
+* 1st photo should be a fun one or showing adventure
+* 2nd should be normal
+* 3rd might be fun
+* others pictures might be of your choice
+
+##Your bio
+Try to be out of the crowd! Say something fun and interesting that gives the envy to talk with you.
+
+##The opener
+Do not use something you found on Reddit/any forum. Be yourself. However, be fun and try to be teasing: there are a lot of creepy guys on the internet, and you have to show that you are not one of them.
