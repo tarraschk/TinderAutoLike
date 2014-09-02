@@ -66,8 +66,7 @@ puts 'Fetching your Facebook ID...'
 fb_token = /#access_token=(.*)&expires_in/.match(browser.url).captures[0]
 puts 'My FB_TOKEN is '+fb_token
 
-browser.goto'https://www.facebook.com/'
-browser.link(:title =>"Journal").when_present.click
+browser.goto'https://www.facebook.com/profile.php'
 fb_id = /fbid=(.*)&set/.match(browser.link(:class =>"profilePicThumb").when_present.href).captures[0]
 puts 'My FB_ID is '+fb_id
 
