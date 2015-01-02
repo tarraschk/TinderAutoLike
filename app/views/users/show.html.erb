@@ -1,0 +1,58 @@
+<% provide(:title, @user.full_name) %>
+<%= javascript_include_tag 'crypt.js' %>
+<%= javascript_include_tag 'users.js' %>
+<div class="container-fluid">
+	<div class="row">
+		<div class="contact-container-master col-xs-12">
+			<div class="row">
+				<div class="col-sm-offset-2 col-sm-8 col-xs-12">
+					<div class="row">
+						<div class="col-xs-12">
+							<br/>
+							<section>
+								<h1> <%= @user.full_name %> </h1>
+							</section>
+						</div>
+					</div>
+					<div class="row">
+						<%= render 'shared/error_messages' %>
+						<%= form_for @user do |f| %>
+							<div style="display:none">
+								<span id="name_text"><%= @user.name %></span>
+								<span id="firstname_text"><%= @user.firstname %></span>
+								<span id="login_text"><%= @user.login %></span>
+							</div>
+							<div class="col-xs-12">
+								<%= f.label :name %>:
+								<%= f.text_field :name %>
+								<br />
+							</div>
+							<div class="col-xs-12">
+								<%= f.label :firstname %>:
+								<%= f.text_field :firstname %>
+								<br />
+							</div>
+							<div class="col-xs-12">
+								<%= f.label :password %>:
+								<%= f.password_field :password %>
+							</div>
+							<% if current_user.is_admin %>
+							<div class="col-xs-12">
+								<%= f.label :is_admin, "Administrator?" %>:
+								<%= f.check_box :is_admin %>
+							</div>
+							<div class="col-xs-12">
+								<%= f.label :is_active, "Active?" %>:
+								<%= f.check_box :is_active %>
+							</div>
+							<% end %>
+							<div class="col-xs-12">
+								<%= f.submit "Update" %>
+							</div>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

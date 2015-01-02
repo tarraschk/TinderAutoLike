@@ -1,0 +1,45 @@
+<% provide(:title, 'Admin') %>
+<%= javascript_include_tag 'crypt.js' %>
+<%= javascript_include_tag 'admin.js' %>
+<div class="container-fluid">
+	<div class="row">
+		<div class="contact-container-master col-xs-12">
+			<h1>Administration</h1>
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="panel-group col-xs-12" id="accordion1">
+						<div class="panel panel-default">
+							<div class="panel-heading" onClick="$(this).children().children()[1].click();">
+								<h5 class="panel-title"><span class="glyphicon glyphicon-user"></span> <a data-toggle="collapse" data-parent="#accordion1" href="#admin-users-contenu">Users list</a></h5>
+							</div>
+							<div id="admin-users-contenu" class="panel-collapse collapse in">
+								<div class="panel-body">
+									<table class="table table-hover table-admin-users">
+										<thead>
+											<tr>
+												<th>Name</th>
+												<th>Email/Login</th>
+												<th>Admin?</th>
+												<th>Actif?</th>
+											</tr>
+										</thead>
+										<tbody>
+											<% @users.each do |user| %>
+											<tr href="<%= user_path(user.id) %>">
+												<td><%= user.full_name %></td>
+												<td><%= user.login %></td>
+												<td class="<%= user.is_admin ? 'info' : '' %>"><%= user.is_admin ? "Admin" : "" %></td>
+												<td class="<%= (not user.is_active) ? 'danger' : 'success' %>"><%= user.is_active ? "OK" : "KO" %></td>
+											</tr>
+											<% end %>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,24 @@
+<header class="navbar navbar-fixed-top" role="navigation">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <%= link_to "TinderManager", root_path, id: "logo", class:"navbar-brand" %>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <%= link_to root_path do%>
+              <p><span class="glyphicon glyphicon-home"></span> <%= "Home".upcase %></p>
+            <% end %>
+          </li>
+          <% if signed_in? %>
+            <li  <% if @current_page == "user" %>class="active"<%end%>>
+              <%= link_to user_path current_user.id do%>
+                <p><span class="glyphicon glyphicon-user"></span> <%= " My account".upcase %></p>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div><!-- /.container -->
+  </div><!-- /.navbar-inner -->
+</header>

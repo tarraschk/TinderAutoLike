@@ -1,0 +1,19 @@
+development:
+  adapter: mysql2
+  database: tindermanager
+  timeout: 5000
+  encoding: utf8
+  username: YOUR_MYSQL_USERNAME
+  password: YOUR_MYSQL_PASSWORD
+  host: YOUR_MYSQL_HOST
+  port: 3306
+
+production:
+  adapter: mysql2
+  database: tindermanager
+  timeout: 5000
+  encoding: utf8
+  username: YOUR_MYSQL_USERNAME
+  password: YOUR_MYSQL_PASSWORD
+  host: YOUR_MYSQL_HOST
+  port: 3306

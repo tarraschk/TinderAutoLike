@@ -1,0 +1,27 @@
+<!-- Sidebar -->
+<div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <% if signed_in? && current_user.is_admin %>
+          <li <% if @current_page == "admin" %>class="active"<%end%>>
+            <%= link_to admin_path do%>
+              <p><span class="glyphicon glyphicon-wrench"></span> <%= "Admin".upcase %></p>
+            <% end %>
+          </li>
+        <% end %>
+        <% if signed_in?%>
+
+        <% end %>
+        <li <% if @current_page == "connexion" %>class="active"<%end%>>
+          <% if signed_in? %>
+            <%= link_to signout_path, method: "delete" do%>
+              <p><span class="glyphicon glyphicon-off"></span> <%= "Sign out".upcase %></p>
+            <% end %>
+          <% else %>
+            <%= link_to signin_path do%>
+              <p><span class="glyphicon glyphicon-off"></span> <%= "Sign in".upcase %></p>
+            <% end %>
+          <% end %>
+        </li>
+    </ul>
+</div>
+<!-- /#sidebar-wrapper -->

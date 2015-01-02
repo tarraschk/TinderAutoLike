@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= full_title(yield(:title)) %></title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+  <%= render 'layouts/shim' %>
+</head>
+<body>
+  <%= render 'layouts/header' %>
+  <div id="wrapper">
+    <%= render 'layouts/leftbar' %>
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-lg-12">
+                <% flash.each do |key, value| %>
+                  <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+                <% end %>
+                  <%= yield %>
+                  <%= render 'layouts/footer' %>
+              </div>
+          </div>
+          <%= debug(params) if Rails.env.development? %>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+</body>
+</html>
