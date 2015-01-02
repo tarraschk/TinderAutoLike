@@ -12,8 +12,8 @@ Please do not abuse the Tinder community with this script. Try to meet girls in 
 
 # Requirements
 A working Tinder account, connected to your Facebook account.
-Ruby >= 1.9.2
-
+Ruby >= 1.9.3
+MySQL server
 
 # Usage
 

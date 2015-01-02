@@ -18,8 +18,6 @@
 *.DS_Store
 
 config/database.yml
-config/environments/development.rb
-config/environments/production.rb
 
 ##Specific to this project
 targets.txt

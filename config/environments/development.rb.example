@@ -16,14 +16,17 @@ Rails.application.configure do
 
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address:              YOUR_SMTP_ADDRESS,
-    port:                 YOUR_SMTP_PORT,
-    domain:               YOUR_SMTP_DOMAIN,
-    user_name:            YOUR_SMTP_USERNAME,
-    password:             YOUR_SMTP_PASSWORD,
-    authentication:       'plain',
-    enable_starttls_auto: true  }
+  # With MailCatcher
+  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+  # Or if you want something more specific
+  #  config.action_mailer.smtp_settings = {
+  #    address:              YOUR_SMTP_ADDRESS,
+  #    port:                 YOUR_SMTP_PORT,
+  #    domain:               YOUR_SMTP_DOMAIN,
+  #    user_name:            YOUR_SMTP_USERNAME,
+  #    password:             YOUR_SMTP_PASSWORD,
+  #    authentication:       'plain',
+  #    enable_starttls_auto: true  }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
