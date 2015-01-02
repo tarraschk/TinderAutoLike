@@ -26,7 +26,7 @@ class UsersController < ApplicationController
       if c.deliver
         flash[:warning] = "Thanks for your registration, please wait for an admin to activate your account."
       else
-        flash[:danger] = "Your account has been created, but we have not been able to tell the administration. Please contact him at: maxime@argaus.fr"
+        flash[:danger] = "Your account has been created, but we have not been able to tell the administrator. Please contact him at: maxime@argaus.fr"
       end
       redirect_to signin_path
     else

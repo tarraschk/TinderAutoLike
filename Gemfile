@@ -59,3 +59,8 @@ gem 'bootstrap-sass'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'faraday'
+gem 'faraday_middleware'
+gem 'json'
+gem 'watir-webdriver'

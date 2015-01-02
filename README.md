@@ -1,33 +1,67 @@
-# Olympe
+# TinderRuby AutoLiker v1.0.1
 
-## Technologies :
-- Ruby on rails 4.1.4
-- MySQL
-- Bootstrap
-- OpenPGP
+Tinder Auto Like with Ruby - Applying A/B testing on human relationships.
 
-## Installation
-```sh
-$ git clone [git-repo-url] olympe
-$ cd olympe
-$ bundle install
-```
+Copyright © 2014 Maxime Alay-Eddine @tarraschk - ARGAUS SAS Cybersecurity
+http://www.argaus.fr
 
-Creer une base de données 'olympe' sur le serveur avec un compte associé
-* importer la base de donnée grace au fichier olympe/database/olympe.sql
+Licensed under the MIT license.
 
-Configurer l'application pour communiquer avec notre nouvelle base de donnée
-* modifier le fichier olympe/config/database.yml avec les informations de connexion
+This script has been made to do a little social experiment, trying to apply A/B testing to Tinder.
+Please do not abuse the Tinder community with this script. Try to meet girls in real life and preserve the dignity of human relationships.
 
-Mise à jour du fichier olympe/db/schema.rb :
-```sh
-$ bin/rake db:migrate
-```
+# Requirements
+A working Tinder account, connected to your Facebook account.
+Ruby >= 1.9.2
 
-## Configuration
-* Créer un compte sur le site une fois le serveur démarré
-    * Modifier dans la table 'olympe'.'users' pour le nouvel utilisateur crée les champs 'is_activ' et 'is_admin' à '1'
 
-* Se connecter au site avec le compte nouvellement crée
-* Dans l'onglet 'MON COMPTE' en haut à droite, cliquer sur le bouton 'Générer la clé' et sauvegarder la modification
-* Dans l'onglet 'ADMIN' définir une nouvelle passphrase puis cliquer sur le bouton 'Générer'
+# Usage
+
+## How to use the script
+
+1) Edit the file and insert your Facebook login/password at lines 22 & 23:
+
+    myLogin = 'YOUR_FACEBOOK_EMAIL_ADDRESS'
+    myPassword = 'YOUR_FACEBOOK_PASSWORD'
+
+Please note that these data will be kept private and are just used to connect you to Facebook servers and fetch your Facebook token & id required by Tinder.
+
+2) Launch the script.
+
+    bundle install
+    bundle exec ruby TinderAutoLike.rb
+
+Please wait while the script connects you to Facebook, fetches your token & id, connects to the Tinder API and likes every user in your area.
+Users liked will be put in the file "targets.txt".
+
+3) Enjoy! Do some A/B testing to optimize your profile or study human relationships :).
+
+## A/B Testing with TinderAutoLike
+
+1) Create a profile and set up your account with a typical picture following one of those categories: adventure/selfie/group/fun.
+
+2) Set up your description according to your picture.
+
+3) Launch the script and wait for a week.
+
+4) Count the number of matches you got and divide by the number of likes (see targets.txt) to get your ratio.
+
+5) Delete your Tinder profile, create a new one and iterate.
+
+# Results
+
+Feel free to share your results with this repo.
+
+Below are what we learnt so far with A/B testing.
+
+##Your pictures
+* 1st photo should be a fun one or showing adventure
+* 2nd should be normal
+* 3rd might be fun
+* others pictures might be of your choice
+
+##Your bio
+Try to be out of the crowd! Say something fun and interesting that gives the envy to talk with you.
+
+##The opener
+Do not use something you found on Reddit/any forum. Be yourself. However, be fun and try to be teasing: there are a lot of creepy guys on the internet, and you have to show that you are not one of them.
