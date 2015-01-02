@@ -17,10 +17,6 @@
 
 *.DS_Store
 
-db/schema.rb
-db/*
-db/migrate/*
-
 config/database.yml
 config/environments/development.rb
 config/environments/production.rb

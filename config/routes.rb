@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 Rails.application.routes.draw do
 
+  get 'users/new'
+
   resources :users, only: [:show, :create, :destroy, :update]
   resources :sessions, only: [:new, :create, :destroy]
   root to: 'home#main'
