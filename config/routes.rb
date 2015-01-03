@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   match '/admin',   to: 'admin#index',   via: 'get'
   match '/admin',   to: 'admin#update',   via: 'post'
 
+  resources :account
+
   #match '/search_json',   to: 'search#index_json',   via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.

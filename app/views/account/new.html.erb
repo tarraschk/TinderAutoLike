@@ -1,0 +1,29 @@
+<% provide(:title, 'Creating an Account') %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="contact-container-master col-xs-12">
+      <h1>Creating an Account</h1>
+
+      <div class="row">
+        <div class="col-sm-offset-4 col-sm-4 col-xs-12">
+          <%= form_for @account, url: {action: "create"} do |f| %>
+
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+
+          <%= f.label :fb_token, "Facebook Token" %>
+          <%= f.text_field :fb_token %>
+
+          <%= f.label :fb_id, "Facebook ID" %>
+          <%= f.text_field :fb_id %>
+
+          <%= f.label :tinder_token, "Tinder Token" %>
+          <%= f.text_field :tinder_token %>
+
+          <%= f.submit "Create the account", class: "btn btn-large btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

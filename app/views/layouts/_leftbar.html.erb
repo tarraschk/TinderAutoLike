@@ -9,7 +9,11 @@
           </li>
         <% end %>
         <% if signed_in?%>
-
+          <li <% if @current_page == "account" %>class="active"<%end%>>
+            <%= link_to account_index_path do%>
+            <p><span class="glyphicon glyphicon-user"></span> <%= "Account".upcase %></p>
+            <% end %>
+          </li>
         <% end %>
         <li <% if @current_page == "connexion" %>class="active"<%end%>>
           <% if signed_in? %>
