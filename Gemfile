@@ -4,18 +4,6 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
 
-group :development, :test do
-  gem 'sqlite3'
-  gem 'rspec-rails', '~> 3.0.0'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  # Unit-tests
-  gem 'capybara'
-  gem 'selenium-webdriver'
-  gem 'sprockets'
-  gem 'factory_girl_rails'
-end
-
 # Use mysql2 for database
 gem 'mysql2'
 # Use SCSS for stylesheets
@@ -50,15 +38,6 @@ gem 'backbone-paginator-rails'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
 
 gem 'faraday'
 gem 'faraday_middleware'
