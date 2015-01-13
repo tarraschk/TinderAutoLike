@@ -3,26 +3,66 @@
   <div class="row">
     <div class="contact-container-master col-xs-12">
       <h1>Creating an Account</h1>
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Classical account creation
+              </a>
+            </h4>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-sm-offset-4 col-sm-4 col-xs-12">
+                  <%= form_for @account, url: {action: "create"} do |f| %>
+                  <%= f.label :name %>
+                  <%= f.text_field :name %>
 
-      <div class="row">
-        <div class="col-sm-offset-4 col-sm-4 col-xs-12">
-          <%= form_for @account, url: {action: "create"} do |f| %>
+                  <%= f.label :fb_token, "Facebook Token" %>
+                  <%= f.text_field :fb_token %>
 
-          <%= f.label :name %>
-          <%= f.text_field :name %>
+                  <%= f.label :fb_id, "Facebook ID" %>
+                  <%= f.text_field :fb_id %>
 
-          <%= f.label :fb_token, "Facebook Token" %>
-          <%= f.text_field :fb_token %>
+                  <%= f.label :tinder_token, "Tinder Token" %>
+                  <%= f.text_field :tinder_token %>
 
-          <%= f.label :fb_id, "Facebook ID" %>
-          <%= f.text_field :fb_id %>
-
-          <%= f.label :tinder_token, "Tinder Token" %>
-          <%= f.text_field :tinder_token %>
-
-          <%= f.submit "Create the account", class: "btn btn-large btn-primary" %>
-          <% end %>
+                  <%= f.submit "Create the account", class: "btn btn-large btn-primary" %>
+                  <% end %>
+                </div>
+            </div>
+          </div>
         </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingTwo">
+            <h4 class="panel-title">
+              <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                or... Create an account from Facebook login/password
+              </a>
+            </h4>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-sm-offset-4 col-sm-4 col-xs-12">
+                  <%= form_for @accountfb, url: {action: "create_from_facebook"} do |f| %>
+
+                  <%= f.label :login, "Facebook Login" %>
+                  <%= f.text_field :login %>
+
+                  <%= f.label :password, "Facebook Password" %>
+                  <%= f.text_field :password %>
+
+                  <%= f.submit "Create the account", class: "btn btn-large btn-primary" %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   </div>

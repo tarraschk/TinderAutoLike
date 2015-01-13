@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   match '/admin',   to: 'admin#update',   via: 'post'
 
   resources :account
+  match '/createfb', to: 'account#create_from_facebook', via: 'post'
 
   #match '/search_json',   to: 'search#index_json',   via: 'get'
 
