@@ -21,7 +21,7 @@ class Tinder
     @tinder_token = tinder_token
     conn = Tinder.connect
     conn.token_auth(tinder_token)
-    conn.headers['X-Auth-Token'] = token
+    conn.headers['X-Auth-Token'] = tinder_token
     @connection = conn
   end
 
