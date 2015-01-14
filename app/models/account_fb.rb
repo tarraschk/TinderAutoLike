@@ -17,24 +17,22 @@ class AccountFb < ActiveRecord::Base
     fb_name = /.com\/(.*)/.match(browser.url).captures[0]
     puts 'FB_NAME is '+fb_name
 
-    conn = Faraday.new(:url => 'https://api.gotinder.com') do |faraday|
-      faraday.request :json             # form-encode POST params
-      faraday.response  :logger                  # log requests to STDOUT
-      faraday.adapter Faraday.default_adapter  # make requests with Net::HTTP
-    end
-    # Tinder blocked the Faraday User-Agent.
-    # We now must provide the same User-Agent as the iPhone
-    conn.headers['User-Agent'] = "Tinder/4.0.9 (iPhone; iOS 8.1.1; Scale/2.00)"
+    tinder_token = fetch_tinder_token(fb_token, fb_id)
+
+    Account.create(:name => fb_name, :fb_token => fb_token, :fb_id => fb_id, :tinder_token => tinder_token)
+
+    browser.close
+  end
+
+  def fetch_tinder_token(fb_token, fb_id)
+    conn = Tinder.connect
     puts 'Fetching your Tinder token...'
     # Authentication, the point is to get your Tinder token
     rsp = conn.post '/auth', {:facebook_token => fb_token, :facebook_id => fb_id}
     jrsp = JSON.parse(rsp.body)
     tinder_token = jrsp["token"]
     puts 'TINDER_TOKEN is '+tinder_token
-
-    Account.create(:name => fb_name, :fb_token => fb_token, :fb_id => fb_id, :tinder_token => tinder_token)
-
-    browser.close
+    return tinder_token
   end
 
 end
