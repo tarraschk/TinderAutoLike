@@ -30,6 +30,7 @@ class AccountFb < ActiveRecord::Base
     # Authentication, the point is to get your Tinder token
     rsp = conn.post '/auth', {:facebook_token => fb_token, :facebook_id => fb_id}
     jrsp = JSON.parse(rsp.body)
+    puts jrsp.inspect
     tinder_token = jrsp["token"]
     puts 'TINDER_TOKEN is '+tinder_token
     return tinder_token
