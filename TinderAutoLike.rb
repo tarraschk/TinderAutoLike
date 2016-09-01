@@ -2,17 +2,11 @@
 
 puts "\
 ┌────────────────────────────────────────────────────────────────────┐
-│ Tinder Ruby AutoLiker v1.0.1                                       │
+│ Tinder Ruby AutoLiker v2.0                                         │
 ├────────────────────────────────────────────────────────────────────┤
-│ Copyright © 2014 Maxime Alay-Eddine @tarraschk                     │
-│ Copyright © 2014 ARGAUS SAS Cybersecurity (http://www.argaus.fr)   │
+│ Copyright © 2014-2016 Maxime Alay-Eddine @maximeae                 │
 ├────────────────────────────────────────────────────────────────────┤
 │ Licensed under the MIT license.                                    │
-├────────────────────────────────────────────────────────────────────┤
-│ This script has been made to do a little social experience, trying |
-| to apply A/B testing to Tinder.                                    |
-│ Please do not abuse this script. Try to meet girls in real life    |
-| and preserve the dignity of human relationships.                   |
 └────────────────────────────────────────────────────────────────────┘
 "
 

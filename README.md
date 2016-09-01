@@ -2,13 +2,15 @@
 
 Tinder Auto Like with Ruby - Applying A/B testing on human relationships.
 
-Copyright © 2014 Maxime Alay-Eddine @tarraschk - ARGAUS SAS Cybersecurity
-http://www.argaus.fr
+Copyright © 2014-2016 Maxime Alay-Eddine @maximeae
+http://www.alayeddine.fr
 
 Licensed under the MIT license.
 
 This script has been made to do a little social experiment, trying to apply A/B testing to Tinder.
 Please do not abuse the Tinder community with this script. Try to meet girls in real life and preserve the dignity of human relationships.
+
+Fully compatible with Facebook last update (August 2016).
 
 # Requirements
 A working Tinder account, connected to your Facebook account.
