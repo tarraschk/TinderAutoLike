@@ -27,10 +27,10 @@ myPassword = 'YOUR_FACEBOOK_PASSWORD'
 # ------------
 # DEPENDENCIES
 # ------------
+require 'mechanize'
 require 'faraday'
 require 'faraday_middleware'
 require 'json'
-require 'watir-webdriver'
 
 '''
 The MIT License (MIT)
@@ -55,27 +55,36 @@ THE SOFTWARE.
 '''
 
 puts '==== FACEBOOK ===='
-puts 'Fetching Facebook data...'
+puts '* Fetching Facebook data...'
 # Fetching your Facebook Tinder token & id
-browser = Watir::Browser.new
-puts 'Fetching your Facebook Tinder token...'
-browser.goto 'https://www.facebook.com/dialog/oauth?client_id=464891386855067&redirect_uri=https://www.facebook.com/connect/login_success.html&scope=basic_info,email,public_profile,user_about_me,user_activities,user_birthday,user_education_history,user_friends,user_interests,user_likes,user_location,user_photos,user_relationship_details&response_type=token'
-browser.text_field(:id => 'email').when_present.set myLogin
-browser.text_field(:id => 'pass').when_present.set myPassword
-browser.button(:name => 'login').when_present.click
+puts '  - Fetching your Facebook Tinder token...'
 
-puts 'Fetching your Facebook ID...'
-fb_token = /#access_token=(.*)&expires_in/.match(browser.url).captures[0]
-puts 'My FB_TOKEN is '+fb_token
+tinder_oauth_url = 'https://www.facebook.com/v2.6/dialog/oauth?redirect_uri=fb464891386855067%3A%2F%2Fauthorize%2F&scope=user_birthday,user_photos,user_education_history,email,user_relationship_details,user_friends,user_work_history,user_likes&response_type=token%2Csigned_request&client_id=464891386855067'.freeze
 
-browser.goto'https://www.facebook.com/profile.php'
-fb_id = /fbid=(.*)&set/.match(browser.link(:class =>"profilePicThumb").when_present.href).captures[0]
-puts 'My FB_ID is '+fb_id
+mechanize = Mechanize.new
+mechanize.user_agent = 'Mozilla/5.0 (Linux; U; en-gb; KFTHWI Build/JDQ39) AppleWebKit/535.19 (KHTML, like Gecko) Silk/3.16 Safari/535.19'.freeze
 
-browser.close
+login_form = mechanize.get(tinder_oauth_url).form do |f|
+  f.email = myLogin
+  f.pass = myPassword
+end
+
+fb_token = login_form.submit.form.submit.body.split('access_token=')[1].split('&')[0]
+puts '=> My FB_TOKEN is '+fb_token
+
+puts '  - Fetching your Facebook ID...'
+fb_name = mechanize.get('https://www.facebook.com/profile.php').uri.to_s
+
+fbid_form = mechanize.get('http://findmyfbid.com/').form do |f|
+  f.url = fb_name
+end
+fb_id = /<code>(\d*)<\/code>/.match(fbid_form.submit.body).captures[0]
+puts '=> My FB_ID is '+fb_id
+
+puts '* DONE.'
 
 puts '==== TINDER ===='
-puts 'Connecting to the Tinder API...'
+puts '* Connecting to the Tinder API...'
 # Now, let's connect to the Tinder API
 conn = Faraday.new(:url => 'https://api.gotinder.com') do |faraday|
   faraday.request :json             # form-encode POST params
@@ -85,7 +94,7 @@ end
 # Tinder blocked the Faraday User-Agent.
 # We now must provide the same User-Agent as the iPhone
 conn.headers['User-Agent'] = "Tinder/4.0.9 (iPhone; iOS 8.1.1; Scale/2.00)"
-puts 'Fetching your Tinder token...'
+puts '  - Fetching your Tinder token...'
 # Authentication, the point is to get your Tinder token
 rsp = conn.post '/auth', {:facebook_token => fb_token, :facebook_id => fb_id}
 jrsp = JSON.parse(rsp.body)
@@ -95,7 +104,7 @@ token = jrsp["token"]
 conn.token_auth(token)
 conn.headers['X-Auth-Token'] = token
 
-puts 'Fetching users in your area...'
+puts '  - Fetching users in your area...'
 # Let's fetch Tinder users in your area
 targets = Array.new
 begin
