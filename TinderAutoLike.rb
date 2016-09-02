@@ -14,9 +14,9 @@ puts "\
 # CONFIGURATION
 # -------------
 # Please insert your Facebook credentials below. They won't be sent to anybody except Facebook servers.
-# We use them to connect you and to fetch your Facebook Tinder token & id, in order to authenticate with the Tinder server.
 myLogin = 'YOUR_FACEBOOK_EMAIL_ADDRESS'
 myPassword = 'YOUR_FACEBOOK_PASSWORD'
+# We use them to connect you and to fetch your Facebook Tinder token, in order to authenticate with the Tinder server.
 
 # ------------
 # DEPENDENCIES
@@ -50,7 +50,7 @@ THE SOFTWARE.
 
 puts '==== FACEBOOK ===='
 puts '* Fetching Facebook data...'
-# Fetching your Facebook Tinder token & id
+# Fetching your Facebook Tinder token
 puts '  - Fetching your Facebook Tinder token...'
 
 tinder_oauth_url = 'https://www.facebook.com/v2.6/dialog/oauth?redirect_uri=fb464891386855067%3A%2F%2Fauthorize%2F&scope=user_birthday,user_photos,user_education_history,email,user_relationship_details,user_friends,user_work_history,user_likes&response_type=token%2Csigned_request&client_id=464891386855067'.freeze
@@ -65,15 +65,6 @@ end
 
 fb_token = login_form.submit.form.submit.body.split('access_token=')[1].split('&')[0]
 puts '=> My FB_TOKEN is '+fb_token
-
-puts '  - Fetching your Facebook ID...'
-fb_name = mechanize.get('https://www.facebook.com/profile.php').uri.to_s
-
-fbid_form = mechanize.get('http://findmyfbid.com/').form do |f|
-  f.url = fb_name
-end
-fb_id = /<code>(\d*)<\/code>/.match(fbid_form.submit.body).captures[0]
-puts '=> My FB_ID is '+fb_id
 
 puts '* DONE.'
 
@@ -90,7 +81,7 @@ end
 conn.headers['User-Agent'] = "Tinder/4.0.9 (iPhone; iOS 8.1.1; Scale/2.00)"
 puts '  - Fetching your Tinder token...'
 # Authentication, the point is to get your Tinder token
-rsp = conn.post '/auth', {:facebook_token => fb_token, :facebook_id => fb_id}
+rsp = conn.post '/auth', {:facebook_token => fb_token}
 jrsp = JSON.parse(rsp.body)
 token = jrsp["token"]
 
