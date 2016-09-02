@@ -14,7 +14,10 @@ Fully compatible with Facebook last update (August 2016).
 
 # Requirements
 A working Tinder account, connected to your Facebook account.
-Ruby >= 1.9.2
+- Ruby >= 1.9.2
+- Bundler (Install it with ```gem install bundler```)
+
+**Attention for Mac OS X El Capitan Users:** run ```sudo gem install bundler -n /usr/local/bin``` to install Bundler.
 
 
 # Usage
