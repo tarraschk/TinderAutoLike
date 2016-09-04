@@ -21,6 +21,7 @@ myPassword = 'YOUR_FACEBOOK_PASSWORD'
 # ------------
 # DEPENDENCIES
 # ------------
+require 'net_http_ssl_fix'
 require 'mechanize'
 require 'faraday'
 require 'faraday_middleware'
