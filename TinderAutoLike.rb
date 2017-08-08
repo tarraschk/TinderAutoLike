@@ -94,18 +94,34 @@ puts '  - Fetching users in your area...'
 # Let's fetch Tinder users in your area
 targets = Array.new
 begin
-  fileTargets = File.open("targets.txt", "a")
-  rsp = conn.post 'user/recs'
-  jrsp = JSON.parse(rsp.body)
-  while(!jrsp["results"].nil?)
-    puts '======== LIKING... ========='
-    jrsp["results"].each do |target|
-      targets.push(target["_id"])
-      fileTargets.write(target["_id"]+"\n")
-      trsp = conn.get 'like/'+target["_id"]
-    end
+  # run the "get updates -> iterate -> like" cycle until you close it, or give some condition you want
+  while(true)
+    fileTargets = File.open("targets.txt", "a")
+    
+    # profile update
+    rsp = conn.post '/profile', {:age_filter_min => 18, :gender => 1, :age_filter_max => 32, :distance_filter => 100}
+    jrsp = JSON.parse(rsp.body)
+    
+    # get updates
+    rsp = conn.post '/updates'
+    jrsp = JSON.parse(rsp.body)
+
+    # set location
+    # rsp = conn.post 'user/ping', {:lat => 40.987026, :lon => 29.052813}
+    # jrsp = JSON.parse(rsp.body)
+    
     rsp = conn.post 'user/recs'
     jrsp = JSON.parse(rsp.body)
+    while(!jrsp["results"].nil?)
+      puts '======== LIKING... ========='
+      jrsp["results"].each do |target|
+        targets.push(target["_id"])
+        fileTargets.write(target["_id"]+"\n")
+        trsp = conn.get 'like/'+target["_id"]
+      end
+      rsp = conn.post 'user/recs'
+      jrsp = JSON.parse(rsp.body)
+    end
   end
   puts '========= DONE! =========='
   puts 'Below are the targets you just liked.'
