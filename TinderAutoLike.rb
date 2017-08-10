@@ -18,6 +18,19 @@ myLogin = 'YOUR_FACEBOOK_EMAIL_ADDRESS'
 myPassword = 'YOUR_FACEBOOK_PASSWORD'
 # We use them to connect you and to fetch your Facebook Tinder token, in order to authenticate with the Tinder server.
 
+# Please set latitude where bot will run
+latKey = 40.987026
+# Please set longitude where bot will run
+lonKey = 29.052813
+# Please set minimum age you want to like
+ageFilterMin = 18
+# Please set maximum age you want to like
+ageFilterMax = 32
+# Please set distance as Mile, max: 100
+distanceFilter = 100
+# Please set YOUR gender, 0: male, 1: female
+gender = 0 
+
 # ------------
 # DEPENDENCIES
 # ------------
@@ -94,21 +107,16 @@ puts '  - Fetching users in your area...'
 # Let's fetch Tinder users in your area
 targets = Array.new
 begin
-  # run the "get updates -> iterate -> like" cycle until you close it, or give some condition you want
   while(true)
     fileTargets = File.open("targets.txt", "a")
-    
-    # profile update
-    rsp = conn.post '/profile', {:age_filter_min => 18, :gender => 1, :age_filter_max => 32, :distance_filter => 100}
+    rsp = conn.post '/profile', {:age_filter_min => ageFilterMin, :gender => gender, :age_filter_max => ageFilterMax, :distance_filter => distanceFilter}
     jrsp = JSON.parse(rsp.body)
-    
-    # get updates
+
     rsp = conn.post '/updates'
     jrsp = JSON.parse(rsp.body)
 
-    # set location
-    # rsp = conn.post 'user/ping', {:lat => 40.987026, :lon => 29.052813}
-    # jrsp = JSON.parse(rsp.body)
+    rsp = conn.post 'user/ping', {:lat => latKey, :lon => lonKey}
+    jrsp = JSON.parse(rsp.body)
     
     rsp = conn.post 'user/recs'
     jrsp = JSON.parse(rsp.body)
