@@ -18,10 +18,6 @@ myLogin = 'YOUR_FACEBOOK_EMAIL_ADDRESS'
 myPassword = 'YOUR_FACEBOOK_PASSWORD'
 # We use them to connect you and to fetch your Facebook Tinder token, in order to authenticate with the Tinder server.
 
-# Please set latitude where bot will run
-latKey = 40.987026
-# Please set longitude where bot will run
-lonKey = 29.052813
 # Please set minimum age you want to like
 ageFilterMin = 18
 # Please set maximum age you want to like
@@ -30,6 +26,11 @@ ageFilterMax = 32
 distanceFilter = 100
 # Please set YOUR gender, 0: male, 1: female
 gender = 0 
+
+# Please set latitude where bot will run
+# latKey = 40.987026
+# Please set longitude where bot will run
+# lonKey = 29.052813
 
 # ------------
 # DEPENDENCIES
@@ -115,8 +116,8 @@ begin
     rsp = conn.post '/updates'
     jrsp = JSON.parse(rsp.body)
 
-    rsp = conn.post 'user/ping', {:lat => latKey, :lon => lonKey}
-    jrsp = JSON.parse(rsp.body)
+    # rsp = conn.post 'user/ping', {:lat => latKey, :lon => lonKey}
+    # jrsp = JSON.parse(rsp.body)
     
     rsp = conn.post 'user/recs'
     jrsp = JSON.parse(rsp.body)
